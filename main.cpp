@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         }
     }
     MainWindow w;
-    // w.show();
+    w.show();
     // bulletChat * t = new bulletChat("你好",20,10000);
 
 
