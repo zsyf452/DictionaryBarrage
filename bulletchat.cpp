@@ -3,7 +3,7 @@
 bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
 {
     qDebug()<<_txt;
-    this->txt = new QLabel(_txt,this);
+    this->txt = new OutlinedLabel(_txt,this);
     this->animation = new QPropertyAnimation(this, "pos");
 
     //让窗口自适应文本大小
@@ -25,6 +25,7 @@ bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
     // 获取 QFontMetrics 对象
     QFontMetrics fontMetrics(font);
     int textWidth = fontMetrics.horizontalAdvance(txt->text());
+    this->txt->setMinimumWidth(textWidth + 10); // 添加一些额外的宽度,防止显示不完全的bug
 
     //获取屏幕信息
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -46,6 +47,10 @@ bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
     style();
     bnding_signal();
     this->show();
+
+
+
+
 }
 
 void bulletChat::style()

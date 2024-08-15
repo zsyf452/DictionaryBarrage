@@ -12,11 +12,13 @@ SOURCES += \
     bulletchat.cpp \
     main.cpp \
     mainwindow.cpp \
+    outlinedlabel.cpp \
     tray.cpp
 
 HEADERS += \
     bulletchat.h \
     mainwindow.h \
+    outlinedlabel.h \
     tray.h
 
 FORMS += \

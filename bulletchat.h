@@ -14,11 +14,13 @@
 #include <QVBoxLayout>
 #include <QFontMetrics>
 
+#include <outlinedlabel.h>
+
 class bulletChat:public QDialog
 {
      Q_OBJECT
 private:
-    QLabel *txt;
+    OutlinedLabel *txt;
     QPropertyAnimation *animation;
 
 public:
