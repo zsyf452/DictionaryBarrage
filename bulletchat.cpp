@@ -50,12 +50,15 @@ bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
 
 void bulletChat::style()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::Tool);
+
+    this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowTransparentForInput|Qt::WindowStaysOnTopHint|Qt::Tool);
     // 设置窗口透明
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     // 设置窗口为透明，鼠标事件可以穿透窗口
     this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+
+
 
 
 }

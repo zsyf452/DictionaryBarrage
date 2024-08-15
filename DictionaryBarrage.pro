@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     bulletchat.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tray.cpp
 
 HEADERS += \
     bulletchat.h \
-    mainwindow.h
+    mainwindow.h \
+    tray.h
 
 FORMS += \
     mainwindow.ui
@@ -29,3 +31,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    icon.qrc

@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    style();
+
     this->resourcesList = new QStringList;
     this->watcher = new QFileSystemWatcher;
     //初始化计时器
@@ -14,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     //初始化观察文件变化的成员变量
     this->watcher->addPath(RESOURCES_PATH);
 
+    //初始化系统托盘
+    tray = new Tray(this);
     Signal_binding();
     readSelectFileName();
     qDebug()<<"数据读取"<<readSelectFileDate(RESOURCES_PATH + this->SelectDataName);
@@ -21,18 +25,23 @@ MainWindow::MainWindow(QWidget *parent)
     timer->setInterval(7000);
     timer->start();
 
-
-
+    //初始化选址资源列表
+    qDebug()<<"文件夹读取"<<readResourcesFolder(this->resourcesList);
+    list_resources();
+    initSelectFile();
 
 
 }
 
-void MainWindow::show()
+void MainWindow::style()
 {
-    qDebug()<<"文件夹读取"<<readResourcesFolder(this->resourcesList);
-    list_resources();
-    initSelectFile();
-    QMainWindow::show();
+    setWindowFlags(windowFlags() &~Qt::WindowMaximizeButtonHint);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    hide(); // 隐藏窗口
+    event->ignore(); // 忽略关闭事件
 }
 
 void MainWindow::Signal_binding()
@@ -171,6 +180,7 @@ void MainWindow::HandlingClickEvents()
 
 MainWindow::~MainWindow()
 {
+    delete tray;
     delete this->timer;
     delete ui;
 }

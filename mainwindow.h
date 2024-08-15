@@ -12,6 +12,8 @@
 #include <QHBoxLayout>
 #include <QCheckBox>
 #include <QFileSystemWatcher>
+#include <QCloseEvent>
+#include "tray.h"
 #include "bulletchat.h"
 
 #define RESOURCES_PATH "resources/"
@@ -29,6 +31,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
+
+    //系统托盘
+    Tray *tray;
+
     //计时器
     QTimer *timer;
 
@@ -44,11 +50,15 @@ private:
 
 protected:
     void Signal_binding();
+    void closeEvent(QCloseEvent *event) override;
 
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void show();
+
+    //窗口样式
+    void style();
+
     //生成弹幕
     void Generate_bullet_comments();
     //读取资源文件夹里面的文件名称
