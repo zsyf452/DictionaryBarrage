@@ -25,7 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug()<<"数据读取"<<readSelectFileDate(RESOURCES_PATH + this->SelectDataName);
 
     timer->setInterval(7000);
-    timer->start();
+    set_BulletChatState();
+
 
     //初始化选址资源列表
     qDebug()<<"文件夹读取"<<readResourcesFolder(this->resourcesList);
@@ -37,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::style()
 {
+    this->setWindowIcon(QIcon(":/resources/icon/TrayIcon.png"));
+
     setWindowFlags(windowFlags() &~Qt::WindowMaximizeButtonHint);
 }
 
@@ -53,6 +56,10 @@ void MainWindow::Signal_binding()
         qDebug()<<"文件夹读取"<<this->readResourcesFolder(this->resourcesList);
         this->list_resources();
     });
+    connect(this->ui->switchButton,&QPushButton::clicked,this,[this](){
+        this->isOpen_BulletChat = !this->isOpen_BulletChat;//取反
+        set_BulletChatState();
+    });
 }
 
 
@@ -62,6 +69,20 @@ void MainWindow::Generate_bullet_comments()
     srand(QTime::currentTime().msec());
     int subscript = QRandomGenerator::global()->bounded(this->TextDate.size());
     bulletChat *t = new bulletChat(this->TextDate[subscript],20,20000);
+}
+
+void MainWindow::set_BulletChatState()
+{
+    if(this->isOpen_BulletChat)
+    {
+        this->ui->switchButton->setText("开");
+        this->timer->start();
+    }
+    else
+    {
+        this->ui->switchButton->setText("关");
+        this->timer->stop();
+    }
 }
 
 bool MainWindow::readResourcesFolder(QStringList *sl)

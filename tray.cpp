@@ -3,7 +3,7 @@
 Tray::Tray(QMainWindow *myW):myWindow(myW)
 {
     trayIcon = new QSystemTrayIcon(myWindow);
-    trayIcon->setIcon(QIcon(":/resources/icon/TrayIcon.png")); // 设置图标
+    trayIcon->setIcon(QIcon(":/icon/TrayIcon.png")); // 设置图标
     // 创建托盘图标的菜单
     QMenu *trayMenu = new QMenu(myWindow);
     quitAction = new QAction("Quit", myWindow);

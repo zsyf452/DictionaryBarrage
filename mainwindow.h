@@ -13,6 +13,7 @@
 #include <QCheckBox>
 #include <QFileSystemWatcher>
 #include <QCloseEvent>
+#include <QPushButton>
 #include "tray.h"
 #include "bulletchat.h"
 
@@ -31,6 +32,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
+    //是否开启弹幕
+    bool isOpen_BulletChat = true;
 
     //系统托盘
     Tray *tray;
@@ -61,6 +64,8 @@ public:
 
     //生成弹幕
     void Generate_bullet_comments();
+    //设置弹幕状态(开启或关闭)
+    void set_BulletChatState();
     //读取资源文件夹里面的文件名称
     bool readResourcesFolder(QStringList *sl);
     //读选中文件的数据

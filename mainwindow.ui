@@ -6,17 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>194</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Barrage launcher</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QVBoxLayout" name="fileDate"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="switchButton">
+        <property name="text">
+         <string>on</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="option">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 0)</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="icon.qrc">
+          <normaloff>:/icon/set_icon.png</normaloff>:/icon/set_icon.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -25,13 +50,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>194</width>
      <height>20</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
  <connections/>
 </ui>
