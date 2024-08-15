@@ -7,6 +7,7 @@ OutlinedLabel::OutlinedLabel(const QString &text, QWidget *parent)
 
     this->outlineColor = new QColor(255,255,255);
     this->fontColor = new QColor(0,0,0);
+    this->outlineWidth = new short(2);
 }
 
 OutlinedLabel::OutlinedLabel(const QString &text,QColor outlineC,QColor fontColor,QWidget *parent):QLabel(text, parent)
@@ -15,8 +16,17 @@ OutlinedLabel::OutlinedLabel(const QString &text,QColor outlineC,QColor fontColo
 
     this->outlineColor = new QColor(outlineC);
     this->fontColor = new QColor(fontColor);
+    this->outlineWidth = new short(2);
 }
 
+OutlinedLabel::OutlinedLabel(const QString &text,short outlineWidth,QColor outlineC,QColor fontColor,QWidget *parent):QLabel(text, parent)
+{
+    setAttribute(Qt::WA_OpaquePaintEvent);
+
+    this->outlineColor = new QColor(outlineC);
+    this->fontColor = new QColor(fontColor);
+    this->outlineWidth = new short(outlineWidth);
+}
 
 void OutlinedLabel::paintEvent(QPaintEvent *event)
 {
@@ -51,4 +61,5 @@ OutlinedLabel::~OutlinedLabel()
 {
     delete this->fontColor;
     delete this->outlineColor;
+    delete this->outlineWidth;
 }

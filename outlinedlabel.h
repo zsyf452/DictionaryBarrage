@@ -12,9 +12,11 @@ class OutlinedLabel:public QLabel
 private:
     QColor *outlineColor;
     QColor *fontColor;
+    short *outlineWidth;
 public:
     OutlinedLabel(const QString &text, QWidget *parent = nullptr);
     OutlinedLabel(const QString &text,QColor outlineC,QColor fontColor,QWidget *parent = nullptr);
+    OutlinedLabel(const QString &text,short outlineWidth,QColor outlineC,QColor fontColor,QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *event) override;
 
