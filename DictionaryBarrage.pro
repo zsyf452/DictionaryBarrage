@@ -15,6 +15,7 @@ SOURCES += \
     option/barragesettings.cpp \
     option/initPage.cpp \
     option/option.cpp \
+    option/shortcutkeyssettings.cpp \
     outlinedlabel.cpp \
     tray.cpp
 
@@ -23,6 +24,7 @@ HEADERS += \
     mainwindow.h \
     option/barragesettings.h \
     option/option.h \
+    option/shortcutkeyssettings.h \
     outlinedlabel.h \
     tray.h
 
@@ -39,6 +41,8 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+include("E:\environment\c++\qt Tripartite library\QHotkey-1.5.0\qhotkey.pri")
 
 RESOURCES += \
     icon.qrc

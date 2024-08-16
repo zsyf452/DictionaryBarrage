@@ -6,13 +6,19 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QString>
+#include <QColorDialog>
+#include <QColor>
+#include <QPalette>
+#include <QLabel>
 #include "barragesettings.h"
+#include "shortcutkeyssettings.h"
 
 
 #define RESOURCES_PATH "resources/"
 #define OPTION_PATH "option/"
 #define SELECT_DATE_NAME OPTION_PATH "SelectDateName.txt"
 #define BARRAGE_CONFIGURATION_FILE OPTION_PATH "BarrageConfigurationFile"
+#define SHORTCUT_KEYS_FILE OPTION_PATH "ShortcutKeysFile"
 
 namespace Ui {
 class option;
@@ -30,6 +36,7 @@ signals:
 
 protected:
     void signal_binding();
+    void onTabChanged(int index);
 
 public:
     explicit option(QWidget *parent = nullptr);
@@ -37,9 +44,15 @@ public:
     void write_barrage_configuration_information();
     void read_barrage_configuration_information(BarrageSettings *BS);
 
+    void write_Shortcut_keys();
+    void read_Shortcut_keys(ShortcutKeysSettings *SK);
+
+    static void choiceColor(QWidget *parent, QLabel *l, QColor defaultColor = QColor(255,255,255));
+    static void LabelDyeing(QLabel *l,QColor c);
     ~option();
 public:
     void init_onePage();
+    void init_twoPage();
 
 
 };

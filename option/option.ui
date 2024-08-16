@@ -17,8 +17,11 @@
    <number>0</number>
   </property>
   <widget class="QWidget" name="bulletChatOption">
+   <property name="toolTip">
+    <string/>
+   </property>
    <attribute name="title">
-    <string>页</string>
+    <string>弹幕属性</string>
    </attribute>
    <layout class="QFormLayout" name="formLayout">
     <item row="1" column="0">
@@ -58,7 +61,7 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="8" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <spacer name="horizontalSpacer">
@@ -82,12 +85,89 @@
       </item>
      </layout>
     </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="choice_StrokeColorPushButton">
+      <property name="text">
+       <string>选择描边颜色</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="StrokeColor">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="choice_FontColorPushButton">
+      <property name="text">
+       <string>选择字体颜色</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="FontColor">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="tab">
+  <widget class="QWidget" name="ShortcutKeys">
    <attribute name="title">
-    <string>页</string>
+    <string>快捷键</string>
    </attribute>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="0">
+     <widget class="QLabel" name="enableBarrage">
+      <property name="text">
+       <string>开/关弹幕</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QKeySequenceEdit" name="enableBarrageKeySquenceEdit"/>
+    </item>
+    <item row="2" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ShortcutKeysCertainButton">
+        <property name="text">
+         <string>确定</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

@@ -11,10 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     style();
     this->opt = new option;
+    //快捷键
+    this->SKS = new ShortcutKeysSettings;
     this->BS = new BarrageSettings;
     this->resourcesList = new QStringList;
     this->watcher = new QFileSystemWatcher;
-    opt->show();
+    // opt->show();
 
     //初始化计时器
     this->timer = new QTimer(this);
@@ -22,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     this->watcher->addPath(RESOURCES_PATH);
     //初始化弹幕属性
     opt->read_barrage_configuration_information(this->BS);
+    //初始化快捷键
+    opt->read_Shortcut_keys(this->SKS);
+    this->SK = new ShortcutKeys(SKS->return_enableBarrage().toString());
     //初始化系统托盘
     tray = new Tray(this);
     Signal_binding();
@@ -57,12 +62,21 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::Signal_binding()
 {
+    connect(this->ui->option,&QPushButton::clicked,this->opt,&option::show);
+
     connect(this->timer, &QTimer::timeout, this, &MainWindow::Generate_bullet_comments);
     connect(this->watcher,&QFileSystemWatcher::directoryChanged,this,[this](){
         qDebug()<<"文件夹读取"<<this->readResourcesFolder(this->resourcesList);
         this->list_resources();
     });
     connect(this->ui->switchButton,&QPushButton::clicked,this,[this](){
+        this->isOpen_BulletChat = !this->isOpen_BulletChat;//取反
+        set_BulletChatState();
+    });
+
+    //快捷键
+    connect(this->SK->return_enableBarrage(),&QHotkey::activated,this,[this](){
+
         this->isOpen_BulletChat = !this->isOpen_BulletChat;//取反
         set_BulletChatState();
     });
@@ -95,6 +109,7 @@ void MainWindow::set_BulletChatState()
         this->ui->switchButton->setText("关");
         this->timer->stop();
     }
+    qDebug()<<"弹幕:"<<this->ui->switchButton->text();
 }
 
 bool MainWindow::readResourcesFolder(QStringList *sl)

@@ -23,7 +23,7 @@ void OutlinedLabel::paintEvent(QPaintEvent *event)
     int y = (height() + textHeight) / 2 - fm.descent();
 
     // 设置描边颜色
-    QPen pen(this->BS.return_outlineColor_value());
+    QPen pen(this->BS.return_StrokeColor_value());
     painter.setPen(pen);
 
     // 绘制描边，通过多个方向的偏移实现粗描边效果

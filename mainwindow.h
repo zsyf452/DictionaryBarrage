@@ -14,9 +14,10 @@
 #include <QFileSystemWatcher>
 #include <QCloseEvent>
 #include <QPushButton>
-#include <option/option.h>
+
 
 #include "option/barragesettings.h"
+#include "option/shortcutkeyssettings.h"
 #include "option/option.h"
 #include "tray.h"
 #include "bulletchat.h"
@@ -35,6 +36,11 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     option *opt;
+
+    //快捷键
+    ShortcutKeysSettings *SKS;
+    ShortcutKeys *SK;
+
     //是否开启弹幕
     bool isOpen_BulletChat = true;
     BarrageSettings *BS;
