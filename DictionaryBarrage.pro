@@ -12,17 +12,23 @@ SOURCES += \
     bulletchat.cpp \
     main.cpp \
     mainwindow.cpp \
+    option/barragesettings.cpp \
+    option/initPage.cpp \
+    option/option.cpp \
     outlinedlabel.cpp \
     tray.cpp
 
 HEADERS += \
     bulletchat.h \
     mainwindow.h \
+    option/barragesettings.h \
+    option/option.h \
     outlinedlabel.h \
     tray.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    option/option.ui
 
 TRANSLATIONS += \
     DictionaryBarrage_zh_CN.ts

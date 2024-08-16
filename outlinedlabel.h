@@ -6,17 +6,16 @@
 #include <QPainter>
 #include <QPaintEvent>
 
+#include "option/barragesettings.h"
+
 class OutlinedLabel:public QLabel
 {
     Q_OBJECT
 private:
-    QColor *outlineColor;
-    QColor *fontColor;
-    short *outlineWidth;
+    BarrageSettings BS;
 public:
-    OutlinedLabel(const QString &text, QWidget *parent = nullptr);
-    OutlinedLabel(const QString &text,QColor outlineC,QColor fontColor,QWidget *parent = nullptr);
-    OutlinedLabel(const QString &text,short outlineWidth,QColor outlineC,QColor fontColor,QWidget *parent = nullptr);
+    OutlinedLabel(const QString &text, BarrageSettings _BS, QWidget *parent = nullptr);
+
 
     void paintEvent(QPaintEvent *event) override;
 

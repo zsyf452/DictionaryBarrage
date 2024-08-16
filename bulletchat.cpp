@@ -1,9 +1,10 @@
 #include "bulletchat.h"
 
-bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
+bulletChat::bulletChat(QString _txt,BarrageSettings _BS)
 {
     qDebug()<<_txt;
-    this->txt = new OutlinedLabel(_txt,this);
+    this->BS = _BS;
+    this->txt = new OutlinedLabel(_txt,BS,this);
     this->animation = new QPropertyAnimation(this, "pos");
 
     //让窗口自适应文本大小
@@ -19,7 +20,7 @@ bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
 
     // 创建一个字体对象
     QFont font;
-    font.setPointSize(_fontSize);
+    font.setPointSize(this->BS.return_BulletChat_FontSize_value());
     txt->setFont(font);
 
     // 获取 QFontMetrics 对象
@@ -39,7 +40,7 @@ bulletChat::bulletChat(QString _txt, int _fontSize, int _duration)
 
 
 
-    animation->setDuration(_duration); // 持续时间，根据需要调整
+    animation->setDuration(this->BS.return_BulletChat_retentionTime_value()); // 持续时间，根据需要调整
     animation->setStartValue(QPoint(screenWidth, high)); // 起始位置
     animation->setEndValue(QPoint(this->pos().x()-textWidth,high)); // 结束位置
     animation->start();

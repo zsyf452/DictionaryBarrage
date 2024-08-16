@@ -14,12 +14,14 @@
 #include <QFileSystemWatcher>
 #include <QCloseEvent>
 #include <QPushButton>
+#include <option/option.h>
+
+#include "option/barragesettings.h"
+#include "option/option.h"
 #include "tray.h"
 #include "bulletchat.h"
 
-#define RESOURCES_PATH "resources/"
-#define OPTION_PATH "option/"
-#define SELECT_DATE_NAME OPTION_PATH "SelectDateName.txt"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,8 +34,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
+    option *opt;
     //是否开启弹幕
     bool isOpen_BulletChat = true;
+    BarrageSettings *BS;
 
     //系统托盘
     Tray *tray;

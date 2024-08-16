@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>option</class>
+ <widget class="QTabWidget" name="option">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>0</number>
+  </property>
+  <widget class="QWidget" name="bulletChatOption">
+   <attribute name="title">
+    <string>页</string>
+   </attribute>
+   <layout class="QFormLayout" name="formLayout">
+    <item row="1" column="0">
+     <widget class="QLabel" name="BulletChat_FontSize">
+      <property name="text">
+       <string>字体大小：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="BulletChat_retentionTime">
+      <property name="text">
+       <string>弹幕滞留时间(毫秒)：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="FontStrokeWidth">
+      <property name="text">
+       <string>字体描边宽度：</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="BulletChat_FontSizeLineEdit"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="BulletChat_retentionTimeLineEdit"/>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="FontStrokeWidthLineEdit"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QCheckBox" name="isAutoBarrageEnabled">
+      <property name="text">
+       <string>自动开启弹幕</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bulletChatOptionCertainButton">
+        <property name="text">
+         <string>确定</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="tab">
+   <attribute name="title">
+    <string>页</string>
+   </attribute>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

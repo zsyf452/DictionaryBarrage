@@ -10,14 +10,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     style();
-
+    this->opt = new option;
+    this->BS = new BarrageSettings;
     this->resourcesList = new QStringList;
     this->watcher = new QFileSystemWatcher;
+    opt->show();
+
     //初始化计时器
     this->timer = new QTimer(this);
     //初始化观察文件变化的成员变量
     this->watcher->addPath(RESOURCES_PATH);
-
+    //初始化弹幕属性
+    opt->read_barrage_configuration_information(this->BS);
     //初始化系统托盘
     tray = new Tray(this);
     Signal_binding();
@@ -25,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug()<<"数据读取"<<readSelectFileDate(RESOURCES_PATH + this->SelectDataName);
 
     timer->setInterval(7000);
+
+    this->isOpen_BulletChat = this->BS->return_isAutoBarrageEnabled_value() == true?true:false;
     set_BulletChatState();
 
 
@@ -60,6 +66,11 @@ void MainWindow::Signal_binding()
         this->isOpen_BulletChat = !this->isOpen_BulletChat;//取反
         set_BulletChatState();
     });
+
+    connect(this->opt,&option::updateSettings,this,[this](){
+        qDebug()<<"数据更新";
+        this->opt->read_barrage_configuration_information(this->BS);
+    });
 }
 
 
@@ -68,7 +79,8 @@ void MainWindow::Generate_bullet_comments()
 
     srand(QTime::currentTime().msec());
     int subscript = QRandomGenerator::global()->bounded(this->TextDate.size());
-    bulletChat *t = new bulletChat(this->TextDate[subscript],20,20000);
+
+    bulletChat *t = new bulletChat(this->TextDate[subscript],*this->BS);
 }
 
 void MainWindow::set_BulletChatState()
