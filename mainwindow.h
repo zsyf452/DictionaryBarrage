@@ -63,6 +63,8 @@ private:
 
 protected:
     void Signal_binding();
+    //绑定热键
+    void bindHotkey();
     void closeEvent(QCloseEvent *event) override;
 
 

@@ -40,7 +40,7 @@ void option::onTabChanged(int index)
 
 void option::write_barrage_configuration_information()
 {
-    emit this->updateSettings();
+    emit this->updateBarragesSettings();
     QSettings setting(BARRAGE_CONFIGURATION_FILE ,QSettings::IniFormat);
     //是否自动开启弹幕
     setting.setValue(this->ui->isAutoBarrageEnabled->objectName()
@@ -98,6 +98,7 @@ void option::read_barrage_configuration_information(BarrageSettings *BS)
 
 void option::write_Shortcut_keys()
 {
+    emit updateShortcutKeysSettings();
     QSettings setting(SHORTCUT_KEYS_FILE,QSettings::IniFormat);
     //开/关弹幕
     setting.setValue(this->ui->enableBarrage->objectName()

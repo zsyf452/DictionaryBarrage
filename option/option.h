@@ -32,7 +32,9 @@ private:
     //弹幕
 
 signals:
-    void updateSettings();
+    void updateBarragesSettings();
+    void updateShortcutKeysSettings();
+
 
 protected:
     void signal_binding();

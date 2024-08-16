@@ -54,6 +54,7 @@ void MainWindow::style()
     setWindowFlags(windowFlags() &~Qt::WindowMaximizeButtonHint);
 }
 
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     hide(); // 隐藏窗口
@@ -75,15 +76,29 @@ void MainWindow::Signal_binding()
     });
 
     //快捷键
-    connect(this->SK->return_enableBarrage(),&QHotkey::activated,this,[this](){
+    bindHotkey();
 
+
+    connect(this->opt,&option::updateBarragesSettings,this,[this](){
+        qDebug()<<"弹幕数据更新";
+        this->opt->read_barrage_configuration_information(this->BS);
+    });
+    connect(this->opt,&option::updateShortcutKeysSettings,this,[this](){
+        qDebug()<<"快捷键数据更新";
+        this->opt->read_Shortcut_keys(this->SKS);
+        qDebug()<<this->SKS->return_enableBarrage();
+        this->SK->return_enableBarrage()->resetShortcut();
+        this->SK->return_enableBarrage()->setShortcut(this->SKS->return_enableBarrage(),true);
+        // this->SK->return_enableBarrage()->setNativeShortcut()
+        // bindHotkey();
+    });
+}
+
+void MainWindow::bindHotkey()
+{
+    connect(this->SK->return_enableBarrage(),&QHotkey::activated,this,[this](){
         this->isOpen_BulletChat = !this->isOpen_BulletChat;//取反
         set_BulletChatState();
-    });
-
-    connect(this->opt,&option::updateSettings,this,[this](){
-        qDebug()<<"数据更新";
-        this->opt->read_barrage_configuration_information(this->BS);
     });
 }
 
