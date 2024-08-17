@@ -30,9 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     //初始化系统托盘
     tray = new Tray(this);
     Signal_binding();
+
     readSelectFileName();
     qDebug()<<"数据读取"<<readSelectFileDate(RESOURCES_PATH + this->SelectDataName);
-
     timer->setInterval(7000);
 
     this->isOpen_BulletChat = this->BS->return_isAutoBarrageEnabled_value() == true?true:false;
@@ -183,11 +183,39 @@ bool MainWindow::initSelectFile()
 bool MainWindow::readSelectFileName()
 {
     QFile file(SELECT_DATE_NAME);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+
+
+    // 获取文件信息
+    QFileInfo fileInfo(file);
+    QDir dir = fileInfo.absoluteDir();
+
+    // 检查目录是否存在，如果不存在则创建
+    if (!dir.exists())
+    {
+        if (!dir.mkpath("."))
+        {
+            qDebug() << "文件夹不存在" << dir.absolutePath();
+            return false;
+        }
+    }
+
+    // 检查文件是否存在
+    if (!file.exists())
+    {
+        qDebug() << "文件不存在:" << SELECT_DATE_NAME;
         return false;
+    }
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() <<"文件打开失败"<< SELECT_DATE_NAME;
+        return false;
+    }
+
     QTextStream in(&file);
     in >> this->SelectDataName;
     file.close();
+    return true;
 }
 
 bool MainWindow::wirteSelectFileName(QString name)
