@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug()<<"数据读取"<<readSelectFileDate(RESOURCES_PATH + this->SelectDataName);
     timer->setInterval(7000);
 
-    this->isOpen_BulletChat = this->BS->return_isAutoBarrageEnabled_value() == true?true:false;
+    this->isOpen_BulletChat = this->BS->return_isAutoBarrageEnabled_value();
     set_BulletChatState();
 
 
