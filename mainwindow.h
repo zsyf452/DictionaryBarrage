@@ -60,6 +60,7 @@ private:
     QFileSystemWatcher *watcher;
     //数据
     std::vector<QString> TextDate;
+    bool isTextDateEmpty = false;
 
 protected:
     void Signal_binding();

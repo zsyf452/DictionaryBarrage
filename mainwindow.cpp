@@ -105,6 +105,8 @@ void MainWindow::bindHotkey()
 
 void MainWindow::Generate_bullet_comments()
 {
+    if(this->isTextDateEmpty == false)
+        return;
 
     srand(QTime::currentTime().msec());
     int subscript = QRandomGenerator::global()->bounded(this->TextDate.size());
@@ -141,16 +143,23 @@ bool MainWindow::readSelectFileDate(QString path)
     qDebug()<<"当前数据是"<<path;
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        this->isTextDateEmpty = false;
         return false;
+    }
+
+
 
     QTextStream in(&file);
     TextDate.clear();//清空之前的数据
-    while (!in.atEnd()) {
+    while (!in.atEnd())
+    {
         QString line = in.readLine();
         TextDate.push_back(line);
     }
 
     file.close();
+    this->isTextDateEmpty = true;
     return true;
 
 }
